@@ -27,7 +27,8 @@
                         if (!savedVisitorIds[visitorId]) {
                             savedVisitorIds[visitorId] = [];
                         }
-                        savedVisitorIds[visitorId].push(new Date().toISOString())
+                        savedVisitorIds[visitorId].push(new Date().toISOString());
+                        localStorage.setItem("savedVisitorIds", JSON.stringify(savedVisitorIds));
                     });
             }
         </script>

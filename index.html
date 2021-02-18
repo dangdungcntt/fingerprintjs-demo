@@ -27,11 +27,12 @@
                         if (!savedVisitorIds[visitorId]) {
                             savedVisitorIds[visitorId] = [];
                         }
-                        savedVisitorIds[visitorId].push(new Date().toISOString());
+                        savedVisitorIds[visitorId].push(new Date().toISOString())
                     });
             }
         </script>
         <script
+            data-cfasync="false"
             async
             src="//cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@3/dist/fp.min.js"
             onload="initFingerprintJS()"

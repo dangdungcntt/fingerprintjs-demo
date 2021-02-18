@@ -11,24 +11,20 @@
         <pre id="pre"></div>
         <script data-cfasync="false">
             let pre = document.getElementById("pre");
-            let savedVisitorIds = JSON.parse(
-                localStorage.getItem("savedVisitorIds") || "{}"
-            );
-
-            pre.innerHTML = JSON.stringify(savedVisitorIds, null, 4)
 
             function initFingerprintJS() {
                 FingerprintJS.load()
                     .then((fp) => fp.get())
                     .then((result) => {
-                        // This is the visitor identifier:
-                        const visitorId = result.visitorId;
-
-                        if (!savedVisitorIds[visitorId]) {
-                            savedVisitorIds[visitorId] = [];
-                        }
-                        savedVisitorIds[visitorId].push(new Date().toISOString());
-                        localStorage.setItem("savedVisitorIds", JSON.stringify(savedVisitorIds));
+                        return fetch('https://fingerprintjs-api.nddapp.com/visitors/' + result.visitorId)
+                        .then(res => res.json());
+                    })
+                    .then(visitor => {
+                        pre.innerHTML = JSON.stringify(visitor, null, 4)
+                    })
+                    .catch(err => {
+                        alert('Error');
+                        console.error(err);
                     });
             }
         </script>

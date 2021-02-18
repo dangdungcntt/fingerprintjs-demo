@@ -9,7 +9,7 @@
     <body>
         <h3>Histories</h3>
         <pre id="pre"></div>
-        <script>
+        <script data-cfasync="false">
             let pre = document.getElementById("pre");
             let savedVisitorIds = JSON.parse(
                 localStorage.getItem("savedVisitorIds") || "{}"
